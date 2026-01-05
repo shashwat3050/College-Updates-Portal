@@ -1,27 +1,43 @@
+/* Base reset */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #f3f4f6;
     margin: 0;
+    line-height: 1.5;
 }
 
+/* Header & navigation */
 header {
     background: #0f172a;
     color: white;
     padding: 20px 40px;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 nav a {
     color: #cbd5e1;
-    margin-right: 15px;
     text-decoration: none;
     font-weight: bold;
 }
 
+/* Main layout */
 main {
     max-width: 1000px;
+    width: 100%;
     margin: 30px auto;
+    padding: 0 16px;   /* IMPORTANT for mobile */
 }
 
+/* Cards */
 .card {
     background: white;
     padding: 20px;
@@ -31,18 +47,53 @@ main {
 
 .highlight {
     border-left: 5px solid #2563eb;
+    padding-left: 15px;
 }
 
+/* Form elements */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Buttons */
 button {
-    padding: 8px 14px;
+    padding: 10px 16px;
     background: #2563eb;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-input, textarea, select {
-    width: 100%;
-    padding: 6px;
+/* =========================
+   MOBILE RESPONSIVE RULES
+   ========================= */
+@media (max-width: 768px) {
+
+    header {
+        padding: 16px;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    button {
+        width: 100%;   /* Full-width buttons on phone */
+    }
 }
