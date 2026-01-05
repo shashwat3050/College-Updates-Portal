@@ -1,0 +1,34 @@
+{% extends 'updates/base.html' %}
+
+{% block content %}
+<h2>Register New Staff</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Staff Account</button>
+</form>
+
+<hr>
+
+<h3>Existing Staff</h3>
+
+{% for s in staff %}
+<div class="card">
+    <strong>{{ s.username }}</strong><br>
+
+    {% if s.is_active %}
+        <a href="/deactivate-staff/{{ s.id }}/">Deactivate</a>
+    {% else %}
+        <em>Deactivated</em>
+    {% endif %}
+    |
+    <a href="/delete-staff/{{ s.id }}/"
+       onclick="return confirm('Delete staff permanently?');">
+       Delete
+    </a>
+</div>
+{% empty %}
+<p>No staff users.</p>
+{% endfor %}
+{% endblock %}

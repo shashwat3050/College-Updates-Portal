@@ -1,0 +1,26 @@
+{% extends 'updates/base.html' %}
+
+{% block content %}
+<h2>Important Announcements</h2>
+
+{% for a in pinned %}
+<div class="card highlight">
+    <h3>{{ a.title }}</h3>
+    <p>{{ a.description|truncatewords:30 }}</p>
+    <small>Status: {{ a.status|title }}</small>
+</div>
+{% empty %}
+<p>No pinned announcements.</p>
+{% endfor %}
+
+<h2>All Updates</h2>
+{% for a in latest %}
+<div class="card">
+    <h3>{{ a.title }}</h3>
+    <p>{{ a.description|truncatewords:25 }}</p>
+    <small>Posted on {{ a.created_at|date:"d M Y" }}</small>
+</div>
+{% empty %}
+<p>No announcements available.</p>
+{% endfor %}
+{% endblock %}

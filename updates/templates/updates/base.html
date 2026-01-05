@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Updates</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>College Academic Updates</h1>
+    <nav>
+    <a href="/">Home</a>
+
+    {% if user.is_authenticated and user.is_staff %}
+        <a href="/staff/">All Staff</a>
+    {% endif %}
+
+    {% if user.is_authenticated and user.is_staff %}
+        <a href="/add/">Add Announcement</a>
+        <a href="/manage/">Manage</a>
+    {% endif %}
+
+    {% if user.is_superuser %}
+        <a href="/register-staff/">Register Staff</a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <a href="/logout/">Logout</a>
+    {% else %}
+        <a href="/login/">Login</a>
+    {% endif %}
+</nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

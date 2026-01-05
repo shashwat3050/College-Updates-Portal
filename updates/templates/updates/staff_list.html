@@ -1,0 +1,38 @@
+{% extends 'updates/base.html' %}
+
+{% block content %}
+<h2>Registered Staff</h2>
+
+{% for staff in staff_users %}
+<div class="card">
+    <strong>{{ staff.username }}</strong><br>
+
+    Status:
+    {% if staff.is_active %}
+        <span style="color: green;">Active</span>
+    {% else %}
+        <span style="color: red;">Deactivated</span>
+    {% endif %}
+
+    <br><br>
+
+    {% if user.is_superuser %}
+        {% if staff.is_active %}
+            <a href="/deactivate-staff/{{ staff.id }}/">Deactivate</a>
+        {% else %}
+            <a href="/reactivate-staff/{{ staff.id }}/">Reactivate</a>
+        {% endif %}
+        |
+        <a href="/delete-staff/{{ staff.id }}/"
+           onclick="return confirm('Delete staff permanently?');">
+           Delete
+        </a>
+    {% else %}
+        <em>No management permissions</em>
+    {% endif %}
+</div>
+{% empty %}
+<p>No staff registered.</p>
+{% endfor %}
+
+{% endblock %}
